@@ -5,114 +5,54 @@ class User < ActiveRecord::Base
 
 
 
-    # - `User # favorite_dish`
+    # - `User#favorite_dish`
     # - returns the `dish` instance that has the highest `score` from this `user`
-    def favorite_dish 
-
-        # self == user_instance
-
-        ### using .maxium .... Lolol
-
-        # highscore = self.ratings.maximum( :score )
-
-        # highest_rating = Rating.find_by( score: highscore )
-
-        # return highest_rating.dish
-
-
-
-        #### using .max
-
-        max_score = self.ratings.map{ | each_rating | each_rating.score }.max
+    def favorite_dish
         
-        highest_rating = Rating.find_by( score: max_score )
+        # .find
+        # .find_by( k: v )
+
+        highest_score = self.ratings.maximum( :score )
+
+        Rating.where( score: highest_score ).find{ |each_rating_query| each_rating_query.user_id == self.id }.dish
         
-        return highest_rating.dish
-
-
     end
 
 
 
 
-    # - `User # least_favorite_dish`
+    # - `User#least_favorite_dish`
     # - returns the `dish` instance that has the lowest `score` from this `user`
-    def least_favorite_dish 
+    def least_favorite_dish
 
-        ### using .minium .... Lolol
+        lowest_score = self.ratings.minimum( :score )
 
-        highscore = self.ratings.minimum( :score )
-
-        highest_rating = Rating.find_by( score: highscore )
-
-        return highest_rating.dish
-
-
-
-        #### using .min
-
-        # min_score = self.ratings.map{ | each_rating | each_rating.score }.min
-        
-        # highest_rating = Rating.find_by( score: min_score )
-        
-        # return highest_rating.dish
+        Rating.where( score: lowest_score ).find{ |each_rating_query| each_rating_query.user_id == self.id }.dish
+       
         
     end
 
 
 
 
-    # - `User # remove_ratings(dish)`
-    # - takes a `Dish` (an instance of the `Dish` class) 
-    # and removes _all_ of this `user`'s `rating`s for that `dish`
-    #
-    # - you will have to delete any rows from the `ratings` table 
-    # associated with this `user` and the `dish`
+    # - `User#remove_ratings(dish)`
+    # - takes a `Dish` (an instance of the `Dish` class) and removes _all_ of this `user`'s `rating`s for that `dish`
+    # - you will have to delete any rows from the `ratings` table associated with this `user` and the `dish`
     def remove_ratings( dish_passed_in )
 
-      # self == that_user_instance
+        Rating.where( dish_id: dish_passed_in.id ).each do |each_rating_query| 
 
-      
-        #### using .destory + .each
+            if ( each_rating_query.user_id == self.id )
 
-        # self.ratings.each do | each_rating |
-            
-        #     if ( each_rating.dish.id == dish_passed_in.id )
-                
-        #         each_rating.destroy
+                each_rating_query.destroy
 
-        #     end
-
-        # end
-
-
-        #### using .destory_all + .filter
-
-        result_of_filter = self.ratings.filter do | each_rating |
-            
-            each_rating.dish.id == dish_passed_in.id
+            end
         
         end
-
-        result_of_filter.each do | each_rating |
-            
-            each_rating.destroy
-        
-        end
-
-
-            # Feel Free to Play With 🤷🏾‍♂️
-            # Rating.where( user_id: self.id && dish_id: dish_passed_in.id ).destory_all
-
-            # result_of_filter.destroy_all
-
-
-
-        # .destroy
-
-        # X .delete  
 
     end
+
+
 
     
 end

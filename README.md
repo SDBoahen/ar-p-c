@@ -212,15 +212,15 @@ example, you should be able to call `User.first.dishes` and see a list of the
 ### Aggregate and Association Methods
 
 
-<!-- #### Rating -->
+#### Rating
 
 <!-- - `Rating#print_rating`
   - should `puts` to the terminal a string formatted as follows: `Rating for {insert dish name} by {insert user name}: {insert rating score}. Becuase, {insert rating reason}` -->
 
 
 #### Dish
-
-<!-- - `Dish#leave_rating(user, score, reason, recommended_price)`
+<!-- 
+- `Dish#leave_rating(user, score, reason, recommended_price)`
   - takes a `User` (an instance of the `User` class), a `score` (integer), a `reason` (string), and a `recommended_price` as arguments, and creates a new `Rating` in the database associated with this `Dish` and the `User`
 
 - `Dish#print_all_ratings`
@@ -233,9 +233,9 @@ example, you should be able to call `User.first.dishes` and see a list of the
     - the average of 1,1,1  : (1 + 1 + 1)/3
     - the average of 2,2,2  : (2 + 2 + 2)/3
     - the average of 3,3,3  : (3 + 3 + 3)/3
-    - the average of 1,2,3,4: (1 + 2 + 3 + 4)/4
+    - the average of 1,2,3,4: (1 + 2 + 3 + 4)/4 -->
   
-- `Dish#is_dish_popular`
+<!-- - `Dish#is_dish_popular`
   - returns `true` if `dish` has an average score above a 5, or `false` if the `dish` has an average score below 5 -->
 
 
