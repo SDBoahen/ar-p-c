@@ -98,7 +98,7 @@ The starter code has
 migrations and models for the initial `User` and `Dish`
 models, and 
 
-seed data for some `User`s and `Dish`s. 
+seed data for some `User`s and `Dish`es. 
 
 The GOAL is for your schema/tables to look like this:
 
@@ -221,7 +221,7 @@ example, you should be able to call `User.first.dishes` and see a list of the
 #### Dish
 
 - `Dish#leave_rating(user, score, reason, recommended_price)`
-  - takes a `User` (an instance of the `User` class), a `score` (integer), a `reason` (string), and a `recommended_price` as arguments, and creates a new `Rating` in the database associated with this `Dish` and the `User`
+  - takes a `User` (an instance of the `User` class), a `score` (integer), a `reason` (string), and a `recommended_price` (float) as arguments, and creates a new `Rating` in the database associated with this `Dish` and the `User`
 
 - `Dish#print_all_ratings`
   - should `puts` to the terminal a string representing each `rating` for this `dish`
@@ -234,6 +234,7 @@ example, you should be able to call `User.first.dishes` and see a list of the
     - the average of 2,2,2  : (2 + 2 + 2)/3
     - the average of 3,3,3  : (3 + 3 + 3)/3
     - the average of 1,2,3,4: (1 + 2 + 3 + 4)/4
+    - the average of scores: total_of_scores_for_dish / number_of_ratings_for_dish
   
 - `Dish#is_dish_popular`
   - returns `true` if `dish` has an average score above a 5, or `false` if the `dish` has an average score below 5
